@@ -1,12 +1,29 @@
 
+
 <?php
 require '../config/db.php';
 
 if (!empty($_SESSION["id"])) {
     $user_id = $_SESSION["id"];
     $current_user = $conne->prepare("SELECT * FROM users WHERE id_user = ?");
+    $current_user = $conne->prepare("SELECT * FROM users WHERE id_user = ?");
     $current_user->execute([$user_id]);
     $row = $current_user->fetch(PDO::FETCH_ASSOC);
+
+    // if ($row["primera_sesion"] == 1) {
+    //     echo '<script src="../JS/politicas.js"></script>';
+    //     echo "<script>
+    //         setTimeout(function() {
+    //             politicasPrivacidad();
+    //         }, 500);
+    //     </script>";
+
+    //     $update_first_session = $conne->prepare("UPDATE users SET primera_sesion = 0 WHERE id_user = ?");
+    //     $update_first_session->execute([$user_id]);
+    // }
+
+} else {
+    header("Location: login.php");
 
     // if ($row["primera_sesion"] == 1) {
     //     echo '<script src="../JS/politicas.js"></script>';
@@ -44,10 +61,24 @@ if (!empty($_SESSION["id"])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../JS/politicas.js"></script>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../JS/politicas.js"></script>
+    
 </head>
 
 
+
+
 <body>
+    <header>
+
+        <section class="header" id="header">
+            <a href="./index.php"><img class="scroll-animation img-cabecera" src="../assets/logo sportX-2.png" alt=""></a>
+            <nav>
+                <div class="nav-links" id="navlinks">
+                    <i class="fa fa-times" onclick="hideMenu()"></i>
     <header>
 
         <section class="header" id="header">
@@ -71,6 +102,46 @@ if (!empty($_SESSION["id"])) {
             <i class="fa fa-bars" onclick="showMenu()"></i>
         </nav>
     </section>
+</header>
+<main>
+<a href="./userinfo.php" class="user-btn btn-su">
+        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+    </svg><span><?php echo $row["name"]; ?></span>
+</a>
+    
+<button class="dark-mode">
+        <label class="switch-container">
+            <input type="checkbox" checked="checked" id="modoOscuroCheckbox">
+            <span class="slider"></span>
+        </label>
+    </button>
+    
+
+</main>
+
+</body>
+    
+    <script>
+        // Asignar el evento onclick al elemento <li>
+        document.querySelector(".subtemas").addEventListener("click", hideLink);
+        
+        function checkScrollAnimation() {
+            const elements = document.querySelectorAll('.scroll-animation');
+            elements.forEach((element) => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenHeight = window.innerHeight;
+                if (elementPosition < screenHeight * 0.8) {
+                    element.classList.add('animate');
+        }
+        });
+        } 
+    
+        // Ejecutar la función cuando se carga la página y se desplaza
+        window.addEventListener('load', checkScrollAnimation);
+        window.addEventListener('scroll', checkScrollAnimation);
+    </script>
 </header>
 <main>
 <a href="./userinfo.php" class="user-btn btn-su">
