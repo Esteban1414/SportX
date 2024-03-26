@@ -44,7 +44,7 @@
                     
                 <div class="click-submit">
                     <input class="btn btn-primary input-register" type="submit" name="login" value="LOG IN">
-                    <a href="./change_pass/change.php">Forgot password?</a>
+                    <a href="./change_pass/recover.php">Forgot password?</a>
                 </div>
 
             </form>
