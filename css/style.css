@@ -10,6 +10,14 @@
     font-family: 'Bebas Neue', sans-serif !important;
 }
 
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
 :root{
     --typeBasePrimary: Futura;
     --typeBaseFallback: sans-serif;
@@ -105,12 +113,20 @@ nav {
     cursor: pointer;
 }
 
-.nav-links .iconos-cabecera :first-child{
-    margin-left: 20px;
+.nav-links .iconos-cabecera li{
+    margin-left: 30px;
+}
+
+.nav-links ,.iconos-cabecera li:nth-of-type(1){
+    font-size: 40px;
 }
 
 .nav-links ,.iconos-cabecera li:nth-of-type(2){
     /* margin-left: -10px; */
+    font-size: 40px;
+}
+
+.nav-links ,.iconos-cabecera li:nth-of-type(3){
     font-size: 45px;
 }
 
@@ -183,36 +199,6 @@ table td{
     font-size: 22px;
 }
 
-@media (max-width: 700px){
-    .text-box h1{
-        font-size: 35px;
-    }
-    .nav-links ul li{
-        display: block;
-    }
-    .nav-links{
-        position: absolute;  
-        background: #000000;
-        height: 100vh;
-        width: 200px;
-        top: 0;
-        right: -200px;
-        text-align: left;
-        z-index: 2;
-        transition: 1s;
-    }
-    nav .fa{
-        display: block;
-        color: #fff;
-        margin: 10px;
-        font-size: 22px;
-        cursor: pointer;
-    }
-    .nav-links ul{
-        padding: 30px;
-    }
-}
-
 /* SECCIONES */
 
 
@@ -275,6 +261,7 @@ table td{
 .dropdown:hover .dropdown-content-6
 {
     display: block;
+    overflow: hidden;
 }
 
 .dropdown-content a{
@@ -323,11 +310,17 @@ table td{
     height: auto;
 }
 
+
 footer{
     background-color: lightgray;
     position: relative;
-    bottom: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 20px;
+    clear: both;
+    bottom: -450px;
 }
+
 
 footer p{
     color: #18171c !important;
@@ -421,13 +414,12 @@ footer p{
 }
 
 
-video{
+.banner video{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     /* height: 90%; */
-    object-fit: cover;
 }
 
 
@@ -449,27 +441,27 @@ video{
 }
 
 .header-inicio .ver-1{
-    transform: translateX(-24%); /* Centra el menú respecto al elemento padre */
+    transform: translateX(-20%); /* Centra el menú respecto al elemento padre */
 }
 
 .header-inicio .ver-2{
-    transform: translateX(-33%); /* Centra el menú respecto al elemento padre */
+    transform: translateX(-29%); /* Centra el menú respecto al elemento padre */
 }
 
 .header-inicio .ver-3{
-    transform: translateX(-46%); /* Centra el menú respecto al elemento padre */
+    transform: translateX(-42%); /* Centra el menú respecto al elemento padre */
 }
 
 .header-inicio .ver-4{
-    transform: translateX(-55%); /* Centra el menú respecto al elemento padre */
+    transform: translateX(-51%); /* Centra el menú respecto al elemento padre */
 }
 
 .header-inicio .ver-5{
-    transform: translateX(-66%); /* Centra el menú respecto al elemento padre */
+    transform: translateX(-62%); /* Centra el menú respecto al elemento padre */
 }
 
 .header-inicio .ver-6{
-    transform: translateX(-77%); /* Centra el menú respecto al elemento padre */
+    transform: translateX(-73%); /* Centra el menú respecto al elemento padre */
 }
 
 .header-inicio .dropdown-content .calzado {
@@ -512,7 +504,8 @@ video{
     font-weight: 700;
 }
 
-.header-inicio .dropdown-content ul .temas:after{
+.header-inicio .dropdown-content ul .temas:after,
+aside .temas::after{
     content: '';
     width: 0%;
     height: 2px;
@@ -521,19 +514,32 @@ video{
     margin: auto;
     transition: 0.5s;
 }
+
+.header-inicio .dropdown-content ul .temas:hover,
+aside .temas:hover{
+    cursor: pointer;
+}
+
+
 .header-inicio .dropdown-content ul .temas:hover::after{
     width: 100%;
+}
+
+aside .temas:hover::after{
+    width: 80%;
 }
 
 .header-inicio .dropdown-content ul a:hover{
     background-color: white;
 }
 
-.header-inicio .dropdown-content ul .subtemas{
+.header-inicio .dropdown-content ul .subtemas,
+aside .subtemas{
     transition: transform 2s ease;
 }
 
-.header-inicio .dropdown-content ul .subtemas:hover{
+.header-inicio .dropdown-content ul .subtemas:hover,
+aside .subtemas:hover{
     transform: translateX(30px);
 }
 /* 
@@ -591,43 +597,518 @@ video{
 
 }
 
+.header-inicio .imagen-basket-2{
+    width: 36%;
+    height: auto;
+}
 
-.header-inicio .dropdown-content .imagen-soccer-2 img,
-.header-inicio .dropdown-content .imagen-soccer-1 img{
-    opacity: 1;
-    transition: 0.2s opacity linear;
-  }
+.header-inicio .dropdown-content .imagen-dropdown-basket-1{
+    margin-right: 20px;
+}
 
-  
-.header-inicio .dropdown-content .imagen-soccer-2 img:hover,
-.header-inicio .dropdown-content .imagen-soccer-1 img:hover{
-    opacity: 0.7;
-  }
+.header-inicio .dropdown-content .imagen-dropdown-tennis-1 img,
+.header-inicio .dropdown-content .imagen-dropdown-swimming-1 img,
+.header-inicio .dropdown-content .imagen-dropdown-baseball-1 img,
+.header-inicio .dropdown-content .imagen-dropdown-football-1 img{
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.header-inicio .dropdown-content a{
+    color: #18171c;
+    font-family: var(--typeBasePrimary),var(--typeBaseFallback) !important;
+    margin-bottom: -10px;
+    /* margin-left: 50px; */
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.425px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.dropdown ul{
+    margin-top: 0px;
+}
+
+.header-inicio .iconos-cabecera{
+    margin-bottom: 110px;
+}
+
+.header-inicio > img{
+    margin-bottom: 100px;
+}
 
 
-  
 
-  
-  
+/* ************************************ RESPONSIVE DESIGN ************************************************************* */
+
+@media(max-width: 768px){
+    .banner video{
+        height: 850px;
+    }
+
+    .header-inicio .nav-links-2 ul{
+        display: flex;
+        flex-direction: column;
+        background-color: #18171c;
+        justify-content: flex-end;
+    }
+
+    .header-inicio .nav-links-2 .iconos-cabecera{
+        display: flex;
+        position: absolute;
+        top: 20px;
+        right: 0;
+
+    }
+
+    .header-inicio > img{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .header-inicio .dropdown{
+        position: relative;
+        display: inline-block;
+        background-color: #011ea0;
+    }
+
+    .header-inicio .dropdown ul {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        border: 1px solid black;
+        background-color: white;
+        list-style: none;
+        display: none;
+      }
+      
+      .header-inicio .dropdown ul li {
+        padding: 10px;
+        cursor: pointer;
+      }
+      
+      .header-inicio .dropdown ul li:hover {
+        background-color: #ccc;
+      }
 
 
+}
 
+.header-inicio .dropdown-content{
+    display: none !important;
+}
 
+.header-inicio .soccer:hover .ver-1,
+.header-inicio .basketball:hover .ver-2,
+.header-inicio .tennis:hover .ver-3,
+.header-inicio .swimming:hover .ver-4,
+.header-inicio .baseball:hover .ver-5,
+.header-inicio .football:hover .ver-6
 
+{
+    display: block !important;
+}
 
 /* ------------------------------------------------------------------------------------------------------------------- */
 
-/* 
 
-.nav-links ul li::after{
-    content: '';
-    width: 0%;
-    height: 2px;
-    background: white;
-    display: block;
-    margin: auto;
-    transition: 0.5s;
+
+
+
+
+/* ESTILOS DE PAGINAS DE MENU */
+
+.secciones{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+    float: right !important;
+    /* background-color: lightgray; */
+    width: 80%;
+    top: 300px;
 }
-.nav-links ul li:hover::after{
+
+
+
+aside {
+    position: relative;
+    top: 800px; /* Después de 500px de scroll dentro de <main>, se quedará fijo */
+    background-color: lightblue;
+    border: 2px solid #B3E4E5;
+    width: 15%;
+    float: left;
+    z-index: 999;
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 4px 3px 15px lightgray;
+}
+
+
+  
+aside li{
+    list-style: none;
+}
+
+aside a{
+    /* font-family: var(--typeBasePrimary),var(--typeBaseFallback); */
+    text-decoration: none;
+    color: #18171c;
+    font-weight: 500;
+}
+
+aside li{
+    margin-top: 15px;
+}
+
+aside .temas{
+    font-size: 20px;
+}
+
+
+.video-soccer video{
+    position: absolute; 
+    top: 0;
+    left: 0;
     width: 100%;
-} */
+    height: 500px;
+    object-fit: cover;
+}
+
+.secciones .splide__list img{
+    width: 200px;
+}
+
+.secciones .footwear > h1,
+.secciones .jerseys > h1,
+.secciones .bottom > h1,
+.secciones .balls > h1,
+.secciones .accessories > h1{
+    font-size: 60px;
+}
+
+.secciones .footwear,
+.secciones .jerseys,
+.secciones .bottom,
+.secciones .balls,
+.secciones .accessories{
+    margin-top: 50px;
+}
+
+.secciones .splide-woman,
+.secciones .splide-kids{
+    margin-top: 70px;
+}
+
+.secciones li:hover{
+    cursor: pointer;
+}
+
+.img-soccer > img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    
+}
+.secciones > h1{
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 70px;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.secciones .descripcion{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+
+@media(max-width: 768px){
+
+    aside{
+        display: block;
+        position: relative;
+        width: 90%;
+        /* top: 900px; */
+        margin-top: 350px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .secciones{
+        width: 100%;
+        margin-top: -200px;
+        position: relative;
+    }
+
+    .secciones h1,
+    .secciones h2{
+        width: 100%;
+        text-align: center;
+        /* margin-top: 150px; */
+    }
+
+    .secciones > h1{
+        margin-top: 150px;
+    }
+
+    .secciones .jerseys,
+    .secciones .bottom,
+    .secciones .balls,
+    .secciones .accessories{
+        margin-top: 100px;
+    }
+
+}
+
+/* ANIMACION DE SCROLL */
+
+.scroll-animation {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .scroll-animation.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+aside .temas{
+    font-family: 'Bebas Neue', sans-serif !important;
+}
+
+aside a{
+    font-family: var(--typeBasePrimary),var(--typeBaseFallback) !important;
+}
+
+.header .img-cabecera{
+    width: 350px;
+    margin-top: -70px;
+}
+
+.header .links-cabecera{
+    margin-top: 30px;
+}
+
+.header .iconos-cabecera{
+    margin-top: 30px;
+}
+
+.header .iconos-cabecera-2{
+    margin-top: 0px;
+}
+
+.my-modal {
+    width: 50%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    margin-top: 100px;
+    max-width: 50%; /* Ajusta el ancho máximo según tus preferencias */
+
+}
+
+.my-modal img {
+    margin-top: -50px;
+    margin-bottom: 20px;
+    width: 200px; /* Ajusta el ancho de la imagen según tus preferencias */
+    max-width: 250px; /* Establece el ancho máximo de la imagen */
+    margin: 20px auto; /* Ajusta el margen según tus preferencias */
+    display: block;
+}
+
+.my-modal .info {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin-bottom: 30px;
+}
+
+.my-modal .info .gris {
+    background-color: lightgray;
+    width: 100%;
+}
+
+.my-modal .info .blanco {
+    background-color: white;
+    width: 100%;
+}
+
+.my-modal .info p {
+    font-family: var(--typeBasePrimary), var(--typeBaseFallback) !important;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.my-modal .info span {
+    font-family: var(--typeBasePrimary), var(--typeBaseFallback) !important;
+}
+
+.my-modal h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.my-modal .info p span {
+    float: right;
+    font-weight: lighter;
+}
+
+.my-modal i {
+font-size: 40px;
+}
+
+.my-modal {
+position: fixed;
+top: 35%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #fff;
+z-index: 1000;
+display: none;
+}
+
+.my-modal .info {
+display: flex;
+justify-content: center;
+width: 60%;
+margin-left: auto;
+margin-right: auto;
+margin-bottom: 50px;
+}
+
+.my-modal h1 {
+text-align: center;
+margin-bottom: 20px;
+}
+
+
+.modal-fondo {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+z-index: 999;
+display: none;
+}
+
+/*  */
+
+/* From uiverse.io by @satyamchaudharydev */
+/* removing default style of button */
+
+.form button {
+    border: none;
+    background: none;
+    color: #8b8ba7;
+  }
+
+  .form {
+    --timing: 0.3s;
+    --width-of-input: 200px;
+    --height-of-input: 40px;
+    --border-height: 2px;
+    --input-bg: #fff;
+    --border-color: lightgray;
+    --border-radius: 30px;
+    --after-border-radius: 1px;
+    position: relative;
+    width: var(--width-of-input);
+    height: var(--height-of-input);
+    display: flex;
+    align-items: center;
+    padding-inline: 0.8em;
+    border-radius: var(--border-radius);
+    transition: border-radius 0.5s ease;
+    background: var(--input-bg,#fff);
+    margin-top: 130px;
+    /* margin-bottom: 50px; */
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  
+  .form {
+    border: 2px solid #18171c;
+    border-color: lightgray;
+  }
+  
+
+  .input {
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    text-align: center;
+  }
+
+  .form:before {
+    content: "";
+    position: absolute;
+    background: var(--border-color);
+    transform: scaleX(0);
+    transform-origin: center;
+    width: 100%;
+    height: var(--border-height);
+    left: 0;
+    bottom: 0;
+    border-radius: 1px;
+    transition: transform var(--timing) ease;
+  }
+
+  .form:focus-within {
+    border-radius: var(--after-border-radius);
+    border: none;
+  }
+  
+  input:focus {
+    outline: none;
+  }
+
+  .form:focus-within:before {
+    transform: scale(1);
+  }
+
+  .reset {
+    border: none;
+    background: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  input:not(:placeholder-shown) ~ .reset {
+    opacity: 1;
+    visibility: visible;
+  }
+  /* sizing svg icons */
+  .form svg {
+    width: 17px;
+    margin-top: 3px;
+  }
